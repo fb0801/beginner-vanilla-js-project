@@ -1,0 +1,1 @@
+# beginner-vanilla-js-project
