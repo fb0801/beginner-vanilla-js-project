@@ -12,10 +12,22 @@ function countDown(){
     const today = new Date()
     const timespan = birthday - today
 
+    if (timespan <=-day) {
+        timeLeft.innerHTML = "Hope you had nice Birthday!"
+    }
     if (timespan <= 0) {
         timeLeft.innerHTML ="Happy Birthday"
         clearInterval(timerId)
+        return
     }
+
+    const days = math.floor(timespan /day )
+    const hours = math.floor((timespan % day) / hour)
+    const minutes =math.floor((timespan % hour) /minute)
+    const seconds = math.floor((timespan % minute) / second)
+
+    timeLeft.innerHTML = days + "days" + hours  +"hours" + minutes + "min" + seconds + "seconds"
+
 }
 
 timerId = setInterval(countDown,second)
