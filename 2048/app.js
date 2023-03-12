@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded" ,() => {
     const resultDisplay = document.getElementById('result')
     let squares = []
     const width = 4
+    let score = 0
 
     //create a board
     function createBoard (){
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded" ,() => {
             let randomNumber = math.floor(Math.random() * squares.length)
             if (squares[randomNumber].innerHTML ==0) {
                 squares[randomNumber].innerHTML == 2
-
+                checkGameOver()
             }else generate()
         }
 
@@ -129,8 +130,11 @@ document.addEventListener("DOMContentLoaded" ,() => {
                 let combinedTotal =parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
                 squares[i].innerHTML = combinedTotal
                 squares[i+1].innerHTML = 0 
+                score += combinedTotal
+                scoreDisplay.innerHTML = score
             }
         }
+        checkForWin()
       }
 
 
@@ -140,8 +144,11 @@ document.addEventListener("DOMContentLoaded" ,() => {
                 let combinedTotal =parseInt(squares[i].innerHTML) + parseInt(squares[i+width].innerHTML)
                 squares[i].innerHTML = combinedTotal
                 squares[i+width].innerHTML = 0 
+                score += combinedTotal
+                scoreDisplay.innerHTML = score
             }
         }
+        checkForWin()
       }
 
       //keycodes
@@ -151,6 +158,10 @@ document.addEventListener("DOMContentLoaded" ,() => {
             keyRight()
         }else if (e.keycode ===37) {
             keyLeft()
+        }else if (e.keycode === 38) {
+        keyup()
+        } else if (e.keycode === 40) {
+            keyDown()
         }
       }
       document.addEventListener('keyup', control)
@@ -184,4 +195,29 @@ function keyup(){
 }
 
 
+//check for win
+function checkForWin(){
+    for (let i=0; i<squares.length;i++){
+        if (squares[i].innerHTML === 2048) {
+            resultDisplay.innerHTML = "You Win!"
+            document.removeEventListener("keyup", control)
+        }
+    }
+}
+
+
+//check no 0
+
+function checkGameOver(){
+    let zeros = 0
+    for(let i =0;i < squares.length;i++){
+        if (squares[i].innerHTML ==0){
+            zeros++
+        }
+    }
+    if (zeros ===0){
+        resultDisplay.innerHTML ="You Lose!"
+        document.removeEventListener("keyup", control)
+    }
+}
 })
