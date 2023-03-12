@@ -78,8 +78,64 @@ document.addEventListener("DOMContentLoaded" ,() => {
             }
         }
 
+
+//swipe dwn
+ function moveDown(){
+    for( let i =0; i <4; i++){
+        let totalOne = squares[i].innerHTML
+        let totalTwo = squares[i+width].innerHTML
+        let totalThree = squares[i+(width*2)].innerHTML
+        let totalFour = squares[i+(width*3)].innerHTML
+        let column = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+
+        let filteredColumn = column.filter(num => num)
+        let missing = 4 - filteredColumn.length
+        let zeros = Array(missing).fill(0)
+        let newColumn = zeros.concat(filteredColumn)
+
+        squares[i].innerHTML = newColumn[0]
+        squares[i+width].innerHTML = newColumn[1]
+        squares[i+(width*2)].innerHTML = newColumn[2]
+        squares[i+(width*3)].innerHTML = newColumn[3]
+
+    }
+ }
+    
+//swipe up
+ function moveUp(){
+    for( let i =0; i <4; i++){
+        let totalOne = squares[i].innerHTML
+        let totalTwo = squares[i+width].innerHTML
+        let totalThree = squares[i+(width*2)].innerHTML
+        let totalFour = squares[i+(width*3)].innerHTML
+        let column = [parseInt(totalOne), parseInt(totalTwo), parseInt(totalThree), parseInt(totalFour)]
+
+        let filteredColumn = column.filter(num => num)
+        let missing = 4 - filteredColumn.length
+        let zeros = Array(missing).fill(0)
+        let newColumn = filteredColumn.concat(zeros)
+
+        squares[i].innerHTML = newColumn[0]
+        squares[i+width].innerHTML = newColumn[1]
+        squares[i+(width*2)].innerHTML = newColumn[2]
+        squares[i+(width*3)].innerHTML = newColumn[3]
+
+    }
+ }
+
       function combinedRow(){
         for (let i =0; i<15 ; i++){
+            if (squares[i].innerHTML ===squares[i+1].innerHTML){
+                let combinedTotal =parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
+                squares[i].innerHTML = combinedTotal
+                squares[i].innerHTML = 0 
+            }
+        }
+      }
+
+
+      function combinedColumn(){
+        for (let i =0; i<12 ; i++){
             if (squares[i].innerHTML ===squares[i+1].innerHTML){
                 let combinedTotal =parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
                 squares[i].innerHTML = combinedTotal
@@ -92,14 +148,25 @@ document.addEventListener("DOMContentLoaded" ,() => {
 
       function control(e){
         if (e.keycode === 39) {
-
+            keyRight()
+        }else if (e.keycode ===37) {
+            keyLeft()
         }
       }
+      document.addEventListener('keyup', control)
 
       function keyRight(){
         moveRight()
         combinedRow()
         moveRight()
+        generate()
+      }
+
+
+      function keyLeft(){
+        moveLeft()
+        combinedRow()
+        moveLeft()
         generate()
       }
 
