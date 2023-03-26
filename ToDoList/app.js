@@ -88,3 +88,11 @@ switch(e.target.value){
         }
     })
 }
+
+function saveLocalTodos(todo){
+    //check if already have todo saved
+    let todos
+    if (localStorage.getItem('todos') === null){
+        
+    }
+}
