@@ -8,4 +8,7 @@ Resources:
 <li>https://www.youtube.com/watch?v=V-Mcul5kS_Y </li>
 <li>https://www.youtube.com/watch?v=E3XxeE7NF30</li>
 <li>https://www.youtube.com/watch?v=aDn2g8XfSMc</li>
+<li>https://fonts.google.com/specimen/Poppins?query=popp</li>
+<li>https://fontawesome.com/docs/web/style/styling</li>
+<li>https://fontawesome.com/v5/icons/adjust?style=solid&s=solid&f=classic</li>
 </ul>
