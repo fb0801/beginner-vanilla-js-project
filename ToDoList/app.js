@@ -56,6 +56,9 @@ function deleteCheck(e){
        })
     }
 
+    //add todo item
+    saveLocalTodos(todoInput.value)
+
     //check mark
     if(item.classList[0] ==="complete-btn"){
         const todo = item.parentElement
@@ -93,6 +96,14 @@ function saveLocalTodos(todo){
     //check if already have todo saved
     let todos
     if (localStorage.getItem('todos') === null){
-        
+        todos= []
+    }else{
+        todos = JSON.parse(localStorage.getItem("todos"))
     }
+    todos.push(todo)
+    localStorage.setItem("todos", JSON.stringify("todos"))
+}
+
+function getTodos(){
+    let todos
 }
